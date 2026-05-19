@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SistemaEscolar.Business/SistemaEscolar.Business.csproj" />
+  <Project Path="SistemaEscolar.Data/SistemaEscolar.Data.csproj" />
+  <Project Path="SistemaEscolar.dsk/SistemaEscolar.dsk.csproj" />
+  <Project Path="SistemaEscolar.Entities/SistemaEscolar.Entities.csproj" />
+</Solution>
