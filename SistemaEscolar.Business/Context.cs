@@ -1,7 +1,7 @@
 ﻿using SistemaEscolar.Data;
 using SistemaEscolar.Entities;
 using ZstdSharp.Unsafe;
-
+using System.Collections.Generic;
 
 namespace SistemaEscolar.Business
 {
@@ -46,6 +46,44 @@ namespace SistemaEscolar.Business
             DB db = new DB();
             List<Periodos> peridos = db.ConsultarStoreProcedure<Periodos>("spGetPeriodos");
             return peridos;
+        }
+
+        public List<Alumnos> GetAlumnos()
+        {
+            DB db = new DB();
+
+            List<Alumnos> alumnos =
+                db.ConsultarStoreProcedure<Alumnos>("spGetAlumnos");
+
+            return alumnos;
+        }
+        public List<AlumnosInscritos> GetAlumnosInscritos(int idCursoHorario)
+        {
+            DB db = new DB();
+
+            List<AlumnosInscritos> lista =
+                db.ConsultarStoreProcedure<AlumnosInscritos>(
+                    "spGetAlumnosInscritos",
+                    new Dictionary<string, object>
+                    {
+                { "_id_curso_horario", idCursoHorario }
+                    }
+                );
+
+            return lista;
+        }
+        public void InscribirAlumno(int idAlumno, int idCursoHorario)
+        {
+            DB db = new DB();
+
+            db.EjecutarSPNoQuery(
+                "spInscribirAlumno",
+                new Dictionary<string, object>
+                {
+            { "_id_alumno", idAlumno },
+            { "_id_curso_horario", idCursoHorario }
+                }
+            );
         }
 
         public void AgregarCurso(Cursos curso)
