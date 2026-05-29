@@ -9,7 +9,7 @@ namespace SistemaEscolar.Entities
     public class Aulas
     {
         public int id_aula { get; set; }
-        public string nombre { get; set; }
+        public string Aula { get; set; }
         public int capacidad { get; set; }
     }
 }

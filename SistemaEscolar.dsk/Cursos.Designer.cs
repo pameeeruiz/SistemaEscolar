@@ -105,6 +105,7 @@
             btnCalificaciones.TabIndex = 7;
             btnCalificaciones.Text = "Calificaciones";
             btnCalificaciones.UseVisualStyleBackColor = true;
+            btnCalificaciones.Click += btnCalificaciones_Click;
             // 
             // Cursos
             // 

@@ -1,4 +1,6 @@
 
+using SistemaEscolar.Entities;
+
 namespace SistemaEscolar.dsk
 {
     public partial class Cursos : Form
@@ -88,6 +90,15 @@ namespace SistemaEscolar.dsk
                 );
             }
         }
+
+        private void btnCalificaciones_Click(object sender, EventArgs e)
+        {
+            var cursoSeleccionado = (Entities.Cursos)dtgCursos.CurrentRow.DataBoundItem;
+
+            FrmCalificaciones frm = new FrmCalificaciones(cursoSeleccionado);
+            frm.Show();
+        }
+    }
     }
 
     public class ControllersHelper
@@ -116,4 +127,4 @@ namespace SistemaEscolar.dsk
         }
     }
 
-}
+
