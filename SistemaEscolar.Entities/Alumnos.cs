@@ -13,6 +13,7 @@ namespace SistemaEscolar.Entities
         public string matricula { get; set; }
         public string correo { get; set; }
         public int id_carrera { get; set; }
+        public string Estatus { get; set; }
     }
 
 }

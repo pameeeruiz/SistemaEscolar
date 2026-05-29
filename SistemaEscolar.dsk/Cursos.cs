@@ -67,6 +67,27 @@ namespace SistemaEscolar.dsk
                 Application.Exit();
             }
         }
+
+        private void btnInscripciones_Click(object sender, EventArgs e)
+        {
+            if (dtgCursos.CurrentRow != null)
+            {
+                Entities.Cursos cursoSeleccionado =
+                    (Entities.Cursos)
+                    dtgCursos.CurrentRow.DataBoundItem;
+
+                FrmInscripciones frm =
+                    new FrmInscripciones(cursoSeleccionado);
+
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Selecciona un curso"
+                );
+            }
+        }
     }
 
     public class ControllersHelper

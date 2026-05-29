@@ -17,14 +17,14 @@ namespace SistemaEscolar.dsk
 
         Context db = new Context();
 
-        Cursos cursoSeleccionado;
+        Entities.Cursos cursoSeleccionado;
 
         List<AlumnosInscritos> listaInscritos =
             new List<AlumnosInscritos>();
 
         List<Alumnos> listaAlumnos =
             new List<Alumnos>();
-        public FrmInscripciones(Cursos curso)
+        public FrmInscripciones(Entities.Cursos curso)
         {
             InitializeComponent();
             cursoSeleccionado = curso;

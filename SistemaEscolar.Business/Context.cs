@@ -51,10 +51,12 @@ namespace SistemaEscolar.Business
         public List<Alumnos> GetAlumnos()
         {
             DB db = new DB();
-
-            List<Alumnos> alumnos =
-                db.ConsultarStoreProcedure<Alumnos>("spGetAlumnos");
-
+            // Pasamos explícitamente el parámetro _nombre como NULL para que el SP lo reciba
+            var parametros = new Dictionary<string, object>
+            {
+                { "_nombre", DBNull.Value }
+            };
+            List<Alumnos> alumnos = db.ConsultarStoreProcedure<Alumnos>("spGetAlumnos", parametros);
             return alumnos;
         }
         public List<AlumnosInscritos> GetAlumnosInscritos(int idCursoHorario)
@@ -125,5 +127,122 @@ namespace SistemaEscolar.Business
             );
         }
 
+
+        public void AgregarAlumno(Alumnos alumno)
+        {
+            DB db = new DB();
+
+            db.EjecutarSPNoQuery(
+                "spInsAlumnos",
+                new Dictionary<string, object>
+                {
+            { "_nombre", alumno.nombre },
+            { "_matricula", alumno.matricula },
+            { "_correo", alumno.correo },
+            { "_id_carrera", alumno.id_carrera }
+                }
+            );
+        }
+
+        public void ActualizarAlumno(Alumnos alumno)
+        {
+            DB db = new DB();
+
+            db.EjecutarSPNoQuery(
+                "spUpdAlumnos",
+                new Dictionary<string, object>
+                {
+            { "_id_alumno", alumno.id_alumno },
+            { "_nombre", alumno.nombre },
+            { "_matricula", alumno.matricula },
+            { "_correo", alumno.correo },
+            { "_id_carrera", alumno.id_carrera },
+            { "_estatus", alumno.Estatus }
+                }
+            );
+        }
+
+        public void EliminarAlumno(int idAlumno)
+        {
+            DB db = new DB();
+
+            db.EjecutarSPNoQuery(
+                "spDelAlumnos",
+                new Dictionary<string, object>
+                {
+            { "_id_alumno", idAlumno }
+                }
+            );
+        }
+
+        public List<Alumnos> BuscarAlumno(string nombre)
+        {
+            DB db = new DB();
+
+            return db.ConsultarStoreProcedure<Alumnos>(
+                "spGetAlumno",
+                new Dictionary<string, object>
+                {
+            { "_nombre", nombre }
+                }
+            );
+        }
+
+
+
+
+        public List<Evaluaciones> GetEvaluaciones(int idCursoHorario)
+        {
+            DB db = new DB();
+
+            var evaluaciones = db.ConsultarStoreProcedure<Evaluaciones>(
+                "spGetEvaluaciones",
+                new Dictionary<string, object>
+                {
+            { "_id_curso_horario", idCursoHorario }
+                }
+            );
+
+            if (evaluaciones == null || evaluaciones.Count == 0)
+            {
+                evaluaciones = new List<Evaluaciones>
+        {
+            new Evaluaciones { id_evaluacion = 0, id_curso_horario = idCursoHorario, Evaluacion = "Parcial 1", Porcentaje = 0.25m },
+            new Evaluaciones { id_evaluacion = 0, id_curso_horario = idCursoHorario, Evaluacion = "Parcial 2", Porcentaje = 0.25m },
+            new Evaluaciones { id_evaluacion = 0, id_curso_horario = idCursoHorario, Evaluacion = "Parcial 3", Porcentaje = 0.25m },
+            new Evaluaciones { id_evaluacion = 0, id_curso_horario = idCursoHorario, Evaluacion = "Ordinario", Porcentaje = 0.25m }
+        };
+            }
+
+            return evaluaciones;
+        }
+
+        public List<CalificacionesXCurso> GetCalificacionesXCurso(int idCurso)
+        {
+            DB db = new DB();
+
+            return db.ConsultarStoreProcedure<CalificacionesXCurso>(
+                "spGetCalificacionesXCurso",
+                new Dictionary<string, object>
+                {
+            { "_id_curso", idCurso }
+                }
+            );
+        }
+
+        public void ActualizarCalificacion(int idInscripcion, int idEvaluacion, decimal calificacion)
+        {
+            DB db = new DB();
+
+            db.EjecutarSPNoQuery(
+                "spInsUpdCalificaciones",
+                new Dictionary<string, object>
+                {
+            { "_id_inscripcion", idInscripcion },
+            { "_id_evaluacion", idEvaluacion },
+            { "_calificacion", calificacion }
+                }
+            );
+        }
     }
 }

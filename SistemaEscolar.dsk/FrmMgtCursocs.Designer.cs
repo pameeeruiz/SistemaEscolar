@@ -83,6 +83,7 @@
             cmbDocente.Name = "cmbDocente";
             cmbDocente.Size = new Size(135, 28);
             cmbDocente.TabIndex = 4;
+           
             // 
             // cmbHorario
             // 

@@ -5,6 +5,7 @@ namespace SistemaEscolar.Data
 {
     public class DB
     {
+
         private string connectionString = "Server=localhost;Database=sistema_escolar;Uid=root;Pwd=333evepamela;";
 
         public List<T> ConsultarStoreProcedure<T>(string nombreProcedimiento, Dictionary<string, object> parametros = null) where T : new()
@@ -17,12 +18,14 @@ namespace SistemaEscolar.Data
                 {
                     comando.CommandType = CommandType.StoredProcedure;
 
+                
+
                     // Agregar parámetros si existen
                     if (parametros != null)
                     {
                         foreach (var par in parametros)
                         {
-                            comando.Parameters.AddWithValue(par.Key, par.Value);
+                            comando.Parameters.AddWithValue(par.Key, par.Value ?? DBNull.Value);
                         }
                     }
 

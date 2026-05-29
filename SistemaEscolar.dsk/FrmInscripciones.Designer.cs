@@ -1,4 +1,8 @@
-﻿namespace SistemaEscolar.dsk
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace SistemaEscolar.dsk
 {
     partial class FrmInscripciones
     {
@@ -49,25 +53,26 @@
             // lblCurso
             // 
             lblCurso.AutoSize = true;
+            lblCurso.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             lblCurso.Location = new Point(61, 23);
             lblCurso.Name = "lblCurso";
-            lblCurso.Size = new Size(44, 20);
+            lblCurso.Size = new Size(96, 32);
             lblCurso.TabIndex = 1;
             lblCurso.Text = "curso";
             // 
             // cmbAlumnos
             // 
             cmbAlumnos.FormattingEnabled = true;
-            cmbAlumnos.Location = new Point(156, 75);
+            cmbAlumnos.Location = new Point(156, 66);
             cmbAlumnos.Name = "cmbAlumnos";
-            cmbAlumnos.Size = new Size(151, 28);
+            cmbAlumnos.Size = new Size(300, 28);
             cmbAlumnos.TabIndex = 2;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(43, 317);
+            btnAgregar.Location = new Point(470, 60);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(194, 75);
+            btnAgregar.Size = new Size(110, 36);
             btnAgregar.TabIndex = 3;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -75,6 +80,7 @@
             // 
             // dgvAlumnos
             // 
+            dgvAlumnos.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvAlumnos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAlumnos.Location = new Point(43, 118);
@@ -83,14 +89,15 @@
             dgvAlumnos.ReadOnly = true;
             dgvAlumnos.RowHeadersWidth = 51;
             dgvAlumnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAlumnos.Size = new Size(363, 181);
+            dgvAlumnos.Size = new Size(860, 380);
             dgvAlumnos.TabIndex = 4;
             // 
             // btnNuevoAlumno
             // 
-            btnNuevoAlumno.Location = new Point(243, 318);
+            btnNuevoAlumno.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnNuevoAlumno.Location = new Point(743, 510);
             btnNuevoAlumno.Name = "btnNuevoAlumno";
-            btnNuevoAlumno.Size = new Size(168, 72);
+            btnNuevoAlumno.Size = new Size(160, 40);
             btnNuevoAlumno.TabIndex = 5;
             btnNuevoAlumno.Text = "Nuevo Alumno";
             btnNuevoAlumno.UseVisualStyleBackColor = true;
@@ -100,15 +107,19 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(518, 450);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(900, 580);
             Controls.Add(btnNuevoAlumno);
             Controls.Add(dgvAlumnos);
             Controls.Add(btnAgregar);
             Controls.Add(cmbAlumnos);
             Controls.Add(lblCurso);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FrmInscripciones";
-            Text = "FrmInscripciones";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Inscripciones";
             Load += FrmInscripciones_Load;
             ((System.ComponentModel.ISupportInitialize)dgvAlumnos).EndInit();
             ResumeLayout(false);

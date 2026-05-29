@@ -56,6 +56,7 @@
             btnInscripciones.TabIndex = 1;
             btnInscripciones.Text = "Inscripciones";
             btnInscripciones.UseVisualStyleBackColor = true;
+            btnInscripciones.Click += btnInscripciones_Click;
             // 
             // btnSalir
             // 
